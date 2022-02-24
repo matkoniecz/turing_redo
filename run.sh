@@ -38,16 +38,16 @@ service postgresql start
 sudo locale-gen en_US.UTF-8
 sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
-sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = '<username>';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE <username> SUPERUSER LOGIN PASSWORD '<pgpassword>';"
+sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'username';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE username SUPERUSER LOGIN PASSWORD 'pgpassword';"
 
 service postgresql restart
 
-export PGPASSWORD=<pgpassword>
-export PGUSER=<username>
+export PGPASSWORD=pgpassword
+export PGUSER=username
 export PGHOST=localhost
-export PGDATABASE=<colouringlondondb>
+export PGDATABASE=colouringlondondb
 
-sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = '<colouringlondondb>';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O <username> <colouringlondondb>
+sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O username colouringlondondb
 
 echo "Run psql interactively."
 echo "Run psql interactively."
@@ -87,7 +87,7 @@ pip install -r requirements.txt
 
 python get_test_polygons.py
 
-ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d <colouringlondondb> < $migration; done;
+ls ~/colouring-london/migrations/*.up.sql 2>/dev/null | while read -r migration; do psql -d colouringlondondb < $migration; done;
 
 ./load_geometries.sh ./
 ./create_building_records.sh
@@ -101,5 +101,5 @@ export APP_COOKIE_SECRET=123456
 export TILECACHE_PATH=~/colouring-london/app/tilecache
 npm start
 
-# PGPASSWORD=<pgpassword> PGDATABASE=<colouringlondondb> PGUSER=<username> PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm start 
+# PGPASSWORD=pgpassword PGDATABASE=colouringlondondb PGUSER=username PGHOST=localhost PGPORT=5432 APP_COOKIE_SECRET=123456 TILECACHE_PATH=~/colouring-london/app/tilecache npm start 
 # ?????
