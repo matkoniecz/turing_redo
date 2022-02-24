@@ -40,7 +40,7 @@ sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/mai
 echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
 sudo -u postgres psql -c "SELECT 1 FROM pg_user WHERE usename = 'username';" | grep -q 1 || sudo -u postgres psql -c "CREATE ROLE username SUPERUSER LOGIN PASSWORD 'pgpassword';"
 
-service postgresql restart
+sudo service postgresql restart
 
 export PGPASSWORD=pgpassword
 export PGUSER=username
