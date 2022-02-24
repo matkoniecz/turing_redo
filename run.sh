@@ -34,7 +34,7 @@ echo $PATH
 echo $NODEJS_HOME
 
 # Configuring PostgreSQL
-service postgresql start
+sudo service postgresql start
 sudo locale-gen en_US.UTF-8
 sudo sed -i "s/#\?listen_address.*/listen_addresses '*'/" /etc/postgresql/12/main/postgresql.conf
 echo "host    all             all             all                     md5" | sudo tee --append /etc/postgresql/12/main/pg_hba.conf > /dev/null
