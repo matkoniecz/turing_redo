@@ -49,18 +49,9 @@ export PGDATABASE=colouringlondondb
 
 sudo -u postgres psql -c "SELECT 1 FROM pg_database WHERE datname = 'colouringlondondb';" | grep -q 1 || sudo -u postgres createdb -E UTF8 -T template0 --locale=en_US.utf8 -O username colouringlondondb
 
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
-echo "Run psql interactively."
+psql -d colouringlondondb -c "create extension postgis;"
+psql -d colouringlondondb -c "create extension pgcrypto;"
+psql -d colouringlondondb -c "create extension pg_trgm;"
 
 # Configuring Node.js
 sudo su root
