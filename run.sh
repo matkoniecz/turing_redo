@@ -13,6 +13,8 @@ sudo apt-get install -y gdal-bin libspatialindex-dev libgeos-dev libproj-dev
 
 # Installing Colouring London
 cd ~ && git clone https://github.com/colouring-london/colouring-london.git
+cd colouring-london
+git checkout docs-vagrant
 
 # Installing Node.js
 export NODE_VERSION=v16.13.2
