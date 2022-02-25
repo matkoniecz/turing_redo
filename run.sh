@@ -29,6 +29,10 @@ cat >> ~/.profile <<EOF
 export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
 export PATH=\$NODEJS_HOME:\$PATH
 EOF
+cat >> ~/.bash_profile <<EOF
+export NODEJS_HOME=/usr/local/lib/node/node-$NODE_VERSION/bin
+export PATH=\$NODEJS_HOME:\$PATH
+EOF
 
 source ~/.profile
 
