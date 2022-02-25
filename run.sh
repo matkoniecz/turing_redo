@@ -54,11 +54,9 @@ psql -d colouringlondondb -c "create extension pgcrypto;"
 psql -d colouringlondondb -c "create extension pg_trgm;"
 
 # Configuring Node.js
-sudo su root
 export NODEJS_HOME=/usr/local/lib/node/node-v16.13.2/bin/
 export PATH=$NODEJS_HOME:$PATH
-npm install -g npm@latest
-exit
+sudo env "PATH=$PATH" npm install -g npm@latest
 
 cd ~/colouring-london/app
 npm install
